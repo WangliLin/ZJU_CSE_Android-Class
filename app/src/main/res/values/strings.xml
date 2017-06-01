@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">发布微博</string>
+    <string name="action_settings">Settings</string>
+    
+    <string name="btn_issue">发布</string>
+    <string name="btn_cancel">取消</string>
+    <string name="et_issue">有什么新鲜事，告诉我们吧！</string>
+    <string name="tv_user">微博用户：林望黎</string>
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--
+
+        <View
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/colorPrimary" />
+    -->
+
+
+    <EditTextPreference
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/et1"
+        android:key="username"
+        android:title="用户名"
+        android:summary="请输入用户名"/>
+
+    <EditTextPreference
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/et2"
+        android:key="password"
+        android:title="用户密码"
+        android:summary="请输入用户密码"
+        android:inputType="textPassword"
+        />
+
+    <EditTextPreference
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/et3"
+        android:key="password"
+        android:title="刷新周期"
+        android:summary="请输入刷新周期（秒）"
+        android:inputType="textPassword"
+        />
+
+
+</PreferenceScreen>
