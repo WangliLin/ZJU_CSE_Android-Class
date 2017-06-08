@@ -112,7 +112,7 @@ public class StatusActivity extends AppCompatActivity implements View.OnClickLis
             String username = prefs.getString("username", "");
             String password = prefs.getString("password", "");
 
-            System.out.println("username:" + username + "," + "password:" + password);
+//            System.out.println("username:" + username + "," + "password:" + password);
 
             if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
                 startActivity(new Intent(StatusActivity.this, SettingsActivity.class));
