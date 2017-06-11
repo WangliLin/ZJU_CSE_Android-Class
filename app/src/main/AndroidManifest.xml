@@ -55,9 +55,9 @@
             android:label="选项设置"
             android:theme="@style/AppTheme.NoActionBar">
 
-
-
         </activity>
+
+        <service android:name=".service.UpdateService" />
 
     </application>
 

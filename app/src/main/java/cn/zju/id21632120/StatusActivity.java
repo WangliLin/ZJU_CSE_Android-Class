@@ -21,6 +21,7 @@ import android.widget.Toast;
 import cn.iipc.android.tweetlib.SubmitProgram;
 import cn.iipc.android.tweetlib.YambaClient;
 import cn.iipc.android.tweetlib.YambaClientException;
+import cn.zju.id21632120.service.UpdateService;
 
 /**
  * twitter发布界面
@@ -88,10 +89,22 @@ public class StatusActivity extends AppCompatActivity implements View.OnClickLis
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        /*if (id == R.id.action_settings) {
             new SubmitProgram().doSubmit(this, "D1");
             return true;
-       }
+       }*/
+
+        switch (id) {
+            case R.id.action_settings:
+                new SubmitProgram().doSubmit(this, "D1");
+                return true;
+            case R.id.action_start:
+                startService(new Intent(this, UpdateService.class));
+                return true;
+            case R.id.action_stop:
+                stopService(new Intent(this, UpdateService.class));
+                return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

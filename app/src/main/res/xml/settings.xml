@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/et3"
-        android:key="password"
+        android:key="interval"
         android:title="刷新周期"
         android:summary="请输入刷新周期（秒）"
         android:inputType="textPassword"
