@@ -1,8 +1,10 @@
 package cn.zju.id21632120.service;
 
 import android.app.Service;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -12,6 +14,8 @@ import java.util.List;
 import cn.iipc.android.tweetlib.Status;
 import cn.iipc.android.tweetlib.YambaClient;
 import cn.iipc.android.tweetlib.YambaClientException;
+import cn.zju.id21632120.dbutil.DbHelper;
+import cn.zju.id21632120.dbutil.StatusContract;
 
 /**
  * 用于定时联网更新
@@ -83,22 +87,56 @@ public class UpdateService extends Service implements SharedPreferences.OnShared
 
         @Override
         public void run() {
+
+            DbHelper dbHelper = new DbHelper(UpdateService.this);
+
             while (runFlag) {
                 Log.d(TAG, "Running background thread");
-                try {
+
+                SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+
 
                     //从云端获取数据
                     YambaClient cloud = new YambaClient(username, password);
                     try {
                         List<Status> timeline = cloud.getTimeline(20);
+                        ContentValues values = new ContentValues();
+
+                        Log.d(TAG, "获取记录数：" + timeline.size());
+
+                        int count = 0;
+                        long rowID = 0;
+
                         for (Status status : timeline) {
-                            Log.d(TAG, String.format("%s: %s", status.getUser(), status.getMessage()));
+                            String usr = status.getUser();
+                            String msg = status.getMessage();
+
+                            values.clear();
+
+                            values.put(StatusContract.Column.ID, status.getId());
+                            values.put(StatusContract.Column.USER, status.getUser());
+                            values.put(StatusContract.Column.MESSAGE, status.getMessage());
+                            values.put(StatusContract.Column.CREATED_AT, status.getCreatedAt().getTime());
+
+                            rowID = db.insertWithOnConflict(StatusContract.TABLE, null, values,
+                                    SQLiteDatabase.CONFLICT_IGNORE);
+                            if (rowID != -1) {
+                                count ++;
+                                Log.d(TAG, String.format("%s, %s", usr, msg));
+                            }
+
                         }
+
+
                     } catch (YambaClientException e) {
                         Log.d(TAG, "failed to fetch up the timeline", e);
                         e.printStackTrace();
+                    } finally {
+                        db.close();
                     }
 
+                try {
                     Thread.sleep(DELAY);
                 } catch (InterruptedException e) {
                     runFlag = false;
