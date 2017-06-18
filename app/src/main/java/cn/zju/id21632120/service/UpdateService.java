@@ -28,7 +28,7 @@ public class UpdateService extends Service implements SharedPreferences.OnShared
     static long DELAY = 60000;
     private String username = "student";
     private String password = "password";
-    private boolean runFlag = false;
+    public static boolean runFlag = false;
     private Updater updater;
 
     @Override

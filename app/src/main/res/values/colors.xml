@@ -3,4 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="tweet1">#C5C1AA</color>
+    <color name="tweet2">#C1FFC1</color>
+    <color name="tweet3">#A4D3EE</color>
+    <color name="tweet4">#8FBC8F</color>
+    <color name="tweet5">#FFDAB9</color>
+
 </resources>

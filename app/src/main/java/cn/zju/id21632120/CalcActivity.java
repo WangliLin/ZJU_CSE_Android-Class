@@ -1,5 +1,6 @@
 package cn.zju.id21632120;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,7 +15,7 @@ import android.widget.GridView;
 
 import org.wltea.expression.ExpressionEvaluator;
 
-import cn.iipc.android.tweetlib.SubmitProgram;
+import cn.zju.id21632120.service.UpdateService;
 
 /**
  * 简易计算器界面
@@ -51,7 +52,7 @@ public class CalcActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_calc);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -198,9 +199,28 @@ public class CalcActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            new SubmitProgram().doSubmit(this, "C2");
-            return true;
+        switch (id) {
+            case R.id.action_settings:
+//                new SubmitProgram().doSubmit(this, "D1");
+                return true;
+            case R.id.action_start:
+                startService(new Intent(this, UpdateService.class));
+                return true;
+            case R.id.action_stop:
+                stopService(new Intent(this, UpdateService.class));
+                return true;
+            case R.id.action_calc:
+//                startActivity(new Intent(this, CalcActivity.class));
+                return true;
+            case R.id.action_filetest:
+                startActivity(new Intent(this, StorageActivity.class));
+                return true;
+            case R.id.action_music:
+                startActivity(new Intent(this, MusicActivity.class));
+                return true;
+            case R.id.action_finish:
+                finish();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

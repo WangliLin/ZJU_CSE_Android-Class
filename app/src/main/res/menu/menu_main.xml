@@ -12,12 +12,51 @@
         android:id="@+id/action_start"
         android:orderInCategory="100"
         android:title="@string/action_start"
+        android:checkable="true"
+        android:icon="@android:drawable/ic_menu_rotate"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_stop"
         android:orderInCategory="100"
         android:title="@string/action_stop"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_filetest"
+        android:orderInCategory="100"
+        android:title="@string/action_filetest"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_calc"
+        android:orderInCategory="100"
+        android:title="@string/action_calc"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_music"
+        android:orderInCategory="100"
+        android:title="@string/action_music"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_finish"
+        android:orderInCategory="100"
+        android:icon="@drawable/finish"
+        android:title="@string/action_music"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_scroll_weibo"
+        android:orderInCategory="100"
+        android:title="@string/action_scroll_weibo"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_list_weibo"
+        android:orderInCategory="100"
+        android:title="@string/action_list_weibo"
         app:showAsAction="never" />
 
 </menu>

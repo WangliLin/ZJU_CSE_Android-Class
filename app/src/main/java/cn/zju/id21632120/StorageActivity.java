@@ -1,5 +1,6 @@
 package cn.zju.id21632120;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import cn.iipc.android.tweetlib.SubmitProgram;
+import cn.zju.id21632120.service.UpdateService;
 
 /**
  * 提交FileWrite测试画面
@@ -60,10 +62,34 @@ public class StorageActivity extends AppCompatActivity implements View.OnClickLi
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            new SubmitProgram().doSubmit(this, "E1");
-            return true;
+        switch (id) {
+            case R.id.action_settings:
+                new SubmitProgram().doSubmit(this, "E1");
+                return true;
+            case R.id.action_start:
+                startService(new Intent(this, UpdateService.class));
+                return true;
+            case R.id.action_stop:
+                stopService(new Intent(this, UpdateService.class));
+                return true;
+            case R.id.action_calc:
+                startActivity(new Intent(this, CalcActivity.class));
+                return true;
+            case R.id.action_filetest:
+                startActivity(new Intent(this, StorageActivity.class));
+                return true;
+            case R.id.action_music:
+                startActivity(new Intent(this, MusicActivity.class));
+                return true;
+            case R.id.action_scroll_weibo:
+                startActivity(new Intent(this, ScrollViewActivity.class));
+                return true;
+            case R.id.action_list_weibo:
+                startActivity(new Intent(this, ListViewActivity.class));
+                return true;
+            case R.id.action_finish:
+                finish();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

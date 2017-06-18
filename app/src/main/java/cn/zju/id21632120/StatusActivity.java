@@ -82,6 +82,21 @@ public class StatusActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+        if (menu == null) return true;
+        MenuItem toggleItem = menu.findItem(R.id.action_start);
+        toggleItem.setChecked(UpdateService.runFlag);
+        if (UpdateService.runFlag) {
+            toggleItem.setTitle(R.string.action_stop);
+            toggleItem.setIcon(android.R.drawable.ic_media_pause);
+        } else {
+            toggleItem.setTitle(R.string.action_start);
+            toggleItem.setIcon(android.R.drawable.ic_media_play);
+        }
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -103,6 +118,24 @@ public class StatusActivity extends AppCompatActivity implements View.OnClickLis
                 return true;
             case R.id.action_stop:
                 stopService(new Intent(this, UpdateService.class));
+                return true;
+            case R.id.action_calc:
+                startActivity(new Intent(StatusActivity.this, CalcActivity.class));
+                return true;
+            case R.id.action_filetest:
+                startActivity(new Intent(StatusActivity.this, StorageActivity.class));
+                return true;
+            case R.id.action_music:
+                startActivity(new Intent(StatusActivity.this, MusicActivity.class));
+                return true;
+            case R.id.action_scroll_weibo:
+                startActivity(new Intent(StatusActivity.this, ScrollViewActivity.class));
+                return true;
+            case R.id.action_list_weibo:
+                startActivity(new Intent(StatusActivity.this, ListViewActivity.class));
+                return true;
+            case R.id.action_finish:
+                finish();
                 return true;
         }
 

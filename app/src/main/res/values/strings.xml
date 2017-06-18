@@ -5,6 +5,11 @@
     <string name="action_settings">Settings</string>
     <string name="action_start">开启服务</string>
     <string name="action_stop">关闭服务</string>
+    <string name="action_calc">计算器</string>
+    <string name="action_music">音乐文件列表</string>
+    <string name="action_filetest">文件测试</string>
+    <string name="action_scroll_weibo">微博一览</string>
+    <string name="action_list_weibo">微博二览</string>
 
     <string name="btn_issue">发布</string>
     <string name="btn_cancel">取消</string>
